@@ -1,5 +1,6 @@
-package com.example.sampleuiautomatorproject.application
+package com.example.sampleuiautomatorproject.application.play_market
 
+import com.example.sampleuiautomatorproject.application.AbstractApplication
 import com.example.sampleuiautomatorproject.util.byStringRes
 import com.example.sampleuiautomatorproject.util.byText
 import com.example.sampleuiautomatorproject.util.ext.*

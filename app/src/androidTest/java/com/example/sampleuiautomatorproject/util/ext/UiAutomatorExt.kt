@@ -35,6 +35,10 @@ fun UiObject2.waitIsClickable(isClickable: Boolean, timeout: Long = defaultTimeo
     return this.wait(Until.clickable(isClickable), timeout)
 }
 
+fun UiObject2.waitForText(text: String, timeout: Long = defaultTimeout): Boolean {
+    return this.wait(Until.textEquals(text), timeout)
+}
+
 fun UiObject2.clickAndWaitnewWindow(timeout: Long = defaultTimeout): Boolean {
     return this.clickAndWait(Until.newWindow(), timeout)
 }
