@@ -1,6 +1,7 @@
 package com.example.sampleuiautomatorproject.test
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.example.sampleuiautomatorproject.application.ScreenNotAppearedException
 import com.example.sampleuiautomatorproject.application.ScreenUtils
 import com.example.sampleuiautomatorproject.application.ozon.OzonApp
 import com.example.sampleuiautomatorproject.application.ozon.ProfileScreen
@@ -12,7 +13,8 @@ import org.junit.runner.RunWith
 class OzonAppTest : AbstractApplicationTest<OzonApp>(OzonApp()) {
     private val searchText = "философия java"
     private val expectedItemText = "Философия Java"
-    private val expectedItemPrice = "1 708\u2009\u20BD" // May change!
+//    private val expectedItemPrice = "1 708\u2009\u20BD" // May change!
+    private val expectedItemPrice = "1\u2009499\u2009\u20BD"
 
 
     @Test
@@ -61,7 +63,11 @@ class OzonAppTest : AbstractApplicationTest<OzonApp>(OzonApp()) {
             enterSearchText(searchText)
             with(openItemDetails(expectedItemText)) {
                 clickOnWriteComment()
-                val screen = ScreenUtils.waitForScreen(ProfileScreen())
+                try {
+                    val screen = ScreenUtils.waitForScreen(ProfileScreen())
+                } catch (ex: ScreenNotAppearedException) {
+                    Assert.fail("Profile screen didnt appear")
+                }
             }
         }
     }

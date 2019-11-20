@@ -4,6 +4,8 @@ import androidx.test.uiautomator.BySelector
 import androidx.test.uiautomator.UiObject2
 import androidx.test.uiautomator.UiScrollable
 import androidx.test.uiautomator.Until
+import com.example.sampleuiautomatorproject.application.ElementNotFoundException
+import com.example.sampleuiautomatorproject.application.ScreenNotAppearedException
 import com.example.sampleuiautomatorproject.util.device
 
 private val defaultTimeout = 10.secondsToMillis()
@@ -17,7 +19,8 @@ fun BySelector.tryWaitFindObject(timeout: Long = defaultTimeout): UiObject2? {
 }
 
 fun BySelector.waitFindObject(timeout: Long = defaultTimeout): UiObject2 {
-    return device.wait(Until.findObject(this), timeout)
+    val uiObject2: UiObject2? = device.wait(Until.findObject(this), timeout)
+    return uiObject2 ?: throw ElementNotFoundException("${this}")
 }
 
 fun BySelector.waitFindObjects(timeout: Long = defaultTimeout): List<UiObject2> {

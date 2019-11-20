@@ -2,6 +2,7 @@ package com.example.sampleuiautomatorproject.application.ozon
 
 import androidx.test.uiautomator.BySelector
 import com.example.sampleuiautomatorproject.util.byText
+import com.example.sampleuiautomatorproject.util.byTextContains
 import com.example.sampleuiautomatorproject.util.ext.secondsToMillis
 import com.example.sampleuiautomatorproject.util.ext.tryWaitFindObject
 import com.example.sampleuiautomatorproject.util.ext.waitFindObject
@@ -15,6 +16,12 @@ abstract class BaseScreen(private val selectors: List<BySelector>) {
 
     fun assertText(expected: String, selector: String) {
         val uiElement = byText(expected)
+            .waitFindObject(15.secondsToMillis())
+        Assert.assertEquals(uiElement.resourceName, selector)
+    }
+
+    fun assertTextContains(expected: String, selector: String) {
+        val uiElement = byTextContains(expected)
             .waitFindObject(15.secondsToMillis())
         Assert.assertEquals(uiElement.resourceName, selector)
     }
