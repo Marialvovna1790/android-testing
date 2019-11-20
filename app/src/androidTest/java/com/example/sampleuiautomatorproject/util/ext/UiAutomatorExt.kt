@@ -2,6 +2,7 @@ package com.example.sampleuiautomatorproject.util.ext
 
 import androidx.test.uiautomator.BySelector
 import androidx.test.uiautomator.UiObject2
+import androidx.test.uiautomator.UiScrollable
 import androidx.test.uiautomator.Until
 import com.example.sampleuiautomatorproject.util.device
 
@@ -9,6 +10,10 @@ private val defaultTimeout = 10.secondsToMillis()
 
 fun BySelector.findObject(): UiObject2 {
     return device.findObject(this)
+}
+
+fun BySelector.tryWaitFindObject(timeout: Long = defaultTimeout): UiObject2? {
+    return device.wait(Until.findObject(this), timeout)
 }
 
 fun BySelector.waitFindObject(timeout: Long = defaultTimeout): UiObject2 {
